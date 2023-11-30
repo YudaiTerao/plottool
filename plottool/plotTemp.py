@@ -23,6 +23,16 @@ def BandSinglePlot(ax: a.Axes, values, kpoints, EneScale, Ecenter=0, detailgrid=
     Md.Kaxis(ax, 'x', kpoints)
     Md.Eaxis(ax, 'y', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, MinorScale=MinorScale)
 
+def ProjBandPlot(ax: a.Axes, fig, values, kpoints, EneScale, Ecenter=0, detailgrid=False, MinorScale=-1, dn=-1, cmap='viridis_r', cmax=0.8, cmin=0.0, ms=2):
+    #----- add values -----#
+    for i, value in enumerate(values):
+        if i == dn : break
+        ax.scatter( value[0], value[1], c=value[2], s=ms, cmap=cmap, vmax=cmax, vmin=cmin)
+
+    #----- axes config -----#
+    Md.Kaxis(ax, 'x', kpoints)
+    Md.Eaxis(ax, 'y', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, MinorScale=MinorScale)
+
 def BandComparePlot(ax: a.Axes, values1, values2, kpoints, EneScale, Ecenter=0, detailgrid=False, MinorScale=-1, dn=-1):
     #-----values-----#\
     for i, value1 in enumerate(values1):
