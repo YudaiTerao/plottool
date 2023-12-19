@@ -36,11 +36,11 @@ def ProjBandPlot(ax: a.Axes, fig, values, kpoints, EneScale, Ecenter=0, detailgr
 def BandComparePlot(ax: a.Axes, values1, values2, kpoints, EneScale, Ecenter=0, detailgrid=False, MinorScale=-1, dn=-1):
     #-----values-----#\
     for i, value1 in enumerate(values1):
-        if i == DisplayNum : break
+        if i == dn : break
         color=Pm.Colorlist(0)
         ax.plot( value1[0], value1[1], c=color, lw=Pm.Band_line_width)
     for i, value2 in enumerate(values2):
-        if i == DisplayNum : break
+        if i == dn : break
         color=Pm.Colorlist(1)
         ax.plot( value2[0], value2[1], c=color, lw=Pm.Band_line_width)
 
