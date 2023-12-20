@@ -17,7 +17,7 @@ def BandSinglePlot(ax: a.Axes, values, kpoints, EneScale, Ecenter=0, detailgrid=
         if bdcolor == 'rainbow': color = Pm.Colorlist(i%5)  #n本ごとに色を変える
         elif bdcolor == "": color = 'gray'
         else : color = bdcolor
-        ax.plot( value[0], value[1], c=color, lw=Pm.Band_line_width ) #灰色
+        ax.plot( value[0], value[1], c=color, lw=Pm.Band_line_width, label='bd' )
 
     #----- axes config -----#
     Md.Kaxis(ax, 'x', kpoints)
@@ -38,11 +38,13 @@ def BandComparePlot(ax: a.Axes, values1, values2, kpoints, EneScale, Ecenter=0, 
     for i, value1 in enumerate(values1):
         if i == dn : break
         color=Pm.Colorlist(0)
-        ax.plot( value1[0], value1[1], c=color, lw=Pm.Band_line_width)
+        ax.plot( value1[0], value1[1], c=color, lw=Pm.Band_line_width, \
+                 label='value1')
     for i, value2 in enumerate(values2):
         if i == dn : break
         color=Pm.Colorlist(1)
-        ax.plot( value2[0], value2[1], c=color, lw=Pm.Band_line_width)
+        ax.plot( value2[0], value2[1], c=color, lw=Pm.Band_line_width, \
+                 label='value2')
 
     Md.Kaxis(ax, 'x', kpoints)
     Md.Eaxis(ax, 'y', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, MinorScale=MinorScale)
@@ -62,15 +64,19 @@ def DosPlot(ax: a.Axes, values, EneScale, Eaxis='y', Ecenter=0, detailgrid=False
 
     if Eaxis == 'x' :
         for i, value in enumerate(values):
-            ax.plot( value[0], value[1], c=Pm.Colorlist(i), lw=Pm.Dos_line_width )
-        Md.Eaxis(ax, 'x', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, MinorScale=MinorScale)
-        Md.Daxis(ax, 'y', EneScale, values, Ecenter=Ecenter)
+            ax.plot( value[0], value[1], c=Pm.Colorlist(i), lw=Pm.Dos_line_width, \
+                     label=i )
+        Md.Eaxis( ax, 'x', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, \
+                  MinorScale=MinorScale )
+        Md.Daxis( ax, 'y', EneScale, values, Ecenter=Ecenter )
 
     elif Eaxis == 'y' :
         for i, value in enumerate(values):
-            ax.plot( value[1], value[0], c=Pm.Colorlist(i), lw=Pm.Dos_line_width )
-        Md.Eaxis(ax, 'y', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, MinorScale=MinorScale)
-        Md.Daxis(ax, 'x', EneScale, values, Ecenter=Ecenter)
+            ax.plot( value[1], value[0], c=Pm.Colorlist(i), lw=Pm.Dos_line_width, \
+                     label=i )
+        Md.Eaxis( ax, 'y', EneScale, Ecenter=Ecenter, detailgrid=detailgrid, \
+                  MinorScale=MinorScale)
+        Md.Daxis( ax, 'x', EneScale, values, Ecenter=Ecenter )
 
 ######################
 
